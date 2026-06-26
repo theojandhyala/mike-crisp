@@ -19,7 +19,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="css/styles.css" />
 
@@ -33,15 +33,21 @@
 </head>
 <body>
 
-  <!-- Animated book "entrance" overlay (plays once on load) -->
+  <!-- Cinematic loader (plays once on load) -->
   <div class="intro" id="intro" aria-hidden="true">
-    <div class="intro__book">
-      <span class="intro__leaf"></span>
-      <span class="intro__leaf"></span>
-      <span class="intro__leaf"></span>
-      <span class="intro__leaf"></span>
+    <span class="intro__scan"></span>
+    <div class="intro__center">
+      <div class="intro__book">
+        <span class="intro__leaf"></span>
+        <span class="intro__leaf"></span>
+        <span class="intro__leaf"></span>
+        <span class="intro__leaf"></span>
+      </div>
+      <p class="intro__word">Michael Crisp</p>
+      <p class="intro__sub">What Can't Be Unseen</p>
     </div>
-    <p class="intro__word">Michael Crisp</p>
+    <div class="intro__count"><span id="intro-count">0</span><i>%</i></div>
+    <div class="intro__bar"><span class="intro__fill" id="intro-fill"></span></div>
   </div>
 
   <a class="skip-link" href="#main">Skip to content</a>
@@ -51,6 +57,9 @@
 
   <!-- Cinematic film grain overlay -->
   <div class="grain" aria-hidden="true"></div>
+
+  <!-- Cursor-following halo (lags behind the pointer) -->
+  <div class="cursor-halo" id="cursor-halo" aria-hidden="true"></div>
 
   <!-- ===================== NAV ===================== -->
   <header class="nav" id="nav">
@@ -77,7 +86,7 @@
     <section class="hero" id="top">
       <div class="hero__glow" id="hero-glow" aria-hidden="true"></div>
       <div class="hero__grid" id="hero-grid" aria-hidden="true"></div>
-      <svg class="hero__ecg" viewBox="0 0 1200 200" preserveAspectRatio="none" aria-hidden="true">
+      <svg class="hero__ecg" viewBox="0 0 1200 200" preserveAspectRatio="none" aria-hidden="true" data-parallax="0.3">
         <path d="M0 100 L380 100 L405 100 L420 55 L440 150 L460 100 L505 100 L520 70 L540 130 L560 100 L1200 100"
               fill="none" stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke" />
       </svg>
@@ -113,6 +122,7 @@
 
     <!-- ===================== THE STORY ===================== -->
     <section class="story" id="story">
+      <span class="orb orb--green" data-parallax="0.28" aria-hidden="true"></span>
       <div class="wrap">
         <p class="section-eyebrow reveal">The Story</p>
         <h2 class="section-title reveal">It started with one unsettling question.</h2>
@@ -135,6 +145,25 @@
             pace are deeply human stories, drawn from nearly twenty years on the wards, about the
             people medicine sees and the people it overlooks.
           </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== STATS ===================== -->
+    <section class="stats" id="stats" aria-label="At a glance">
+      <span class="orb orb--teal" data-parallax="0.22" aria-hidden="true"></span>
+      <div class="wrap stats__inner">
+        <div class="stat reveal">
+          <span class="stat__num"><span data-count="20">20</span></span>
+          <span class="stat__label">Years on the wards</span>
+        </div>
+        <div class="stat reveal">
+          <span class="stat__num"><span data-count="1">1</span></span>
+          <span class="stat__label">Debut thriller</span>
+        </div>
+        <div class="stat reveal">
+          <span class="stat__num stat__num--text">15·06·26</span>
+          <span class="stat__label">Published</span>
         </div>
       </div>
     </section>
@@ -212,6 +241,7 @@
 
     <!-- ===================== NEWSLETTER ===================== -->
     <section class="newsletter" id="newsletter">
+      <span class="orb orb--green" data-parallax="0.3" aria-hidden="true"></span>
       <div class="wrap newsletter__inner reveal">
         <h2 class="section-title">Be first to know.</h2>
         <p>New books, cover reveals and release dates — straight to your inbox. No spam, just news.</p>

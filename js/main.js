@@ -36,15 +36,30 @@
     });
   }
 
-  /* ---------- Intro overlay (animated book entrance) ---------- */
+  /* ---------- Cinematic loader (count-up + curtain wipe) ---------- */
   function dismissIntro() { document.body.classList.add("intro-done"); }
   (function intro() {
     var el = $("#intro");
     if (!el || prefersReduced) { dismissIntro(); return; }
-    // Remove from the DOM after the CSS animation has finished.
-    setTimeout(dismissIntro, 3100);
-    // Let an impatient visitor skip it.
-    el.addEventListener("click", dismissIntro);
+    var countEl = $("#intro-count"), fill = $("#intro-fill");
+    var start = null, dur = 1900, done = false;
+
+    function wipe() {
+      if (done) return; done = true;
+      el.classList.add("intro--out");
+      setTimeout(dismissIntro, 850);
+    }
+    function step(ts) {
+      if (start == null) start = ts;
+      var p = Math.min(1, (ts - start) / dur);
+      var val = Math.round(p * 100);
+      if (countEl) countEl.textContent = val;
+      if (fill) fill.style.width = val + "%";
+      if (p < 1) requestAnimationFrame(step);
+      else setTimeout(wipe, 280);
+    }
+    requestAnimationFrame(step);
+    el.addEventListener("click", wipe); // let an impatient visitor skip
   })();
 
   /* ---------- Hero: drive from the featured book ---------- */
@@ -322,6 +337,85 @@
       target.rx = 4; target.ry = -24; target.gx = 0; target.gy = 0;
       active = false; kick();
     });
+  })();
+
+  /* ---------- Cursor-following halo (with lag) ---------- */
+  (function halo() {
+    var el = $("#cursor-halo");
+    if (!el || prefersReduced || !canHover) return;
+    var tx = window.innerWidth / 2, ty = window.innerHeight / 2, x = tx, y = ty, raf = null;
+    function loop() {
+      x += (tx - x) * 0.12; y += (ty - y) * 0.12;
+      el.style.transform = "translate(" + x.toFixed(1) + "px," + y.toFixed(1) + "px)";
+      raf = (Math.abs(tx - x) > 0.5 || Math.abs(ty - y) > 0.5) ? requestAnimationFrame(loop) : null;
+    }
+    window.addEventListener("pointermove", function (e) {
+      tx = e.clientX; ty = e.clientY;
+      el.classList.add("is-on");
+      if (!raf) raf = requestAnimationFrame(loop);
+    });
+  })();
+
+  /* ---------- Scroll parallax (decorative layers) ---------- */
+  (function parallax() {
+    if (prefersReduced) return;
+    var els = $all("[data-parallax]");
+    if (!els.length) return;
+    var ticking = false;
+    function update() {
+      var vh = window.innerHeight;
+      els.forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        var off = (r.top + r.height / 2 - vh / 2) / vh;
+        var f = parseFloat(el.getAttribute("data-parallax")) || 0.15;
+        el.style.transform = "translate3d(0," + (off * f * -120).toFixed(1) + "px,0)";
+      });
+      ticking = false;
+    }
+    window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+  })();
+
+  /* ---------- Hero lifts & fades on scroll ---------- */
+  (function heroExit() {
+    if (prefersReduced) return;
+    var inner = $(".hero__inner");
+    if (!inner) return;
+    var ticking = false;
+    function update() {
+      var p = Math.min(1, window.scrollY / (window.innerHeight * 0.9));
+      inner.style.transform = "translateY(" + (p * -60).toFixed(1) + "px)";
+      inner.style.opacity = (1 - p * 0.9).toFixed(3);
+      ticking = false;
+    }
+    window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    update();
+  })();
+
+  /* ---------- Stat count-up ---------- */
+  (function counters() {
+    var nums = $all("[data-count]");
+    if (!nums.length) return;
+    if (prefersReduced || !("IntersectionObserver" in window)) {
+      nums.forEach(function (n) { n.textContent = n.getAttribute("data-count"); });
+      return;
+    }
+    function run(el) {
+      var target = parseInt(el.getAttribute("data-count"), 10) || 0;
+      var dur = 1200, start = null;
+      function step(ts) {
+        if (start == null) start = ts;
+        var p = Math.min(1, (ts - start) / dur);
+        el.textContent = Math.round((1 - Math.pow(1 - p, 3)) * target);
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { run(e.target); io.unobserve(e.target); } });
+    }, { threshold: 0.5 });
+    nums.forEach(function (n) { n.textContent = "0"; io.observe(n); });
   })();
 
 })();
