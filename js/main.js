@@ -17,6 +17,25 @@
       .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
   }
 
+  var canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+  /* Pointer-driven 3D tilt for any [data-tilt] element (parent supplies perspective). */
+  function attachTilt(el) {
+    if (prefersReduced || !canHover) return;
+    var max = 9;
+    el.addEventListener("pointermove", function (e) {
+      var r = el.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width - 0.5;
+      var py = (e.clientY - r.top) / r.height - 0.5;
+      el.style.transition = "transform .08s linear";
+      el.style.transform = "rotateY(" + (px * max).toFixed(2) + "deg) rotateX(" + (-py * max).toFixed(2) + "deg) translateZ(8px)";
+    });
+    el.addEventListener("pointerleave", function () {
+      el.style.transition = "transform .5s var(--ease)";
+      el.style.transform = "";
+    });
+  }
+
   /* ---------- Intro overlay (animated book entrance) ---------- */
   function dismissIntro() { document.body.classList.add("intro-done"); }
   (function intro() {
@@ -56,36 +75,64 @@
     });
   })();
 
-  /* ---------- Books grid ---------- */
+  /* ---------- Books ---------- */
+  function bookCardHTML(b, i) {
+    var soon = b.status === "coming-soon";
+    return '' +
+      '<article class="bookcard" tabindex="0" role="button" data-tilt aria-label="More about ' + esc(b.title) + '" data-index="' + i + '">' +
+        '<div class="bookcard__art">' +
+          '<span class="bookcard__badge' + (soon ? ' is-soon' : '') + '">' + (soon ? 'Coming soon' : 'Out now') + '</span>' +
+          '<img src="' + esc(b.cover || 'assets/covers/placeholder.svg') + '" alt="Cover of ' + esc(b.title) + '" loading="lazy" />' +
+        '</div>' +
+        '<div class="bookcard__body">' +
+          (b.series ? '<span class="bookcard__series">' + esc(b.series) + '</span>' : '') +
+          '<h3 class="bookcard__title">' + esc(b.title) + '</h3>' +
+          '<p class="bookcard__tagline">' + esc(b.tagline || '') + '</p>' +
+          '<div class="bookcard__foot"><span class="bookcard__more">Details</span></div>' +
+        '</div>' +
+      '</article>';
+  }
+
+  function bookFeatureHTML(b) {
+    var buys = (b.buyLinks || []).map(function (l) {
+      return '<a class="btn btn--primary" href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.label) + '</a>';
+    }).join("");
+    return '' +
+      '<div class="bookfeature">' +
+        '<div class="bookfeature__cover" data-tilt><img src="' + esc(b.cover || 'assets/covers/placeholder.svg') + '" alt="Cover of ' + esc(b.title) + '" /></div>' +
+        '<div class="bookfeature__info">' +
+          (b.series ? '<p class="bookfeature__series">' + esc(b.series) + '</p>' : '') +
+          '<h3 class="bookfeature__title">' + esc(b.title) + '</h3>' +
+          (b.releaseText ? '<p class="bookfeature__release">' + esc(b.releaseText) + '</p>' : '') +
+          (b.blurb ? '<p class="bookfeature__blurb">' + esc(b.blurb) + '</p>' : '') +
+          '<div class="bookfeature__actions">' + buys +
+            '<button class="btn btn--ghost" type="button" data-open>Full details</button>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+  }
+
   (function renderBooks() {
     var grid = $("#books-grid");
     if (!grid) return;
     if (!BOOKS.length) { grid.innerHTML = '<p style="color:var(--muted-dark)">Books coming soon.</p>'; return; }
 
-    grid.innerHTML = BOOKS.map(function (b, i) {
-      var soon = b.status === "coming-soon";
-      return '' +
-        '<article class="bookcard" tabindex="0" role="button" aria-label="More about ' + esc(b.title) + '" data-index="' + i + '">' +
-          '<div class="bookcard__art">' +
-            '<span class="bookcard__badge' + (soon ? ' is-soon' : '') + '">' + (soon ? 'Coming soon' : 'Out now') + '</span>' +
-            '<img src="' + esc(b.cover || 'assets/covers/placeholder.svg') + '" alt="Cover of ' + esc(b.title) + '" loading="lazy" />' +
-          '</div>' +
-          '<div class="bookcard__body">' +
-            (b.series ? '<span class="bookcard__series">' + esc(b.series) + '</span>' : '') +
-            '<h3 class="bookcard__title">' + esc(b.title) + '</h3>' +
-            '<p class="bookcard__tagline">' + esc(b.tagline || '') + '</p>' +
-            '<div class="bookcard__foot"><span class="bookcard__more">Details</span></div>' +
-          '</div>' +
-        '</article>';
-    }).join("");
-
-    $all(".bookcard", grid).forEach(function (card) {
-      var open = function () { openModal(BOOKS[+card.getAttribute("data-index")]); };
-      card.addEventListener("click", open);
-      card.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
+    if (BOOKS.length === 1) {
+      grid.classList.add("books__grid--single");
+      grid.innerHTML = bookFeatureHTML(BOOKS[0]);
+      var det = $("[data-open]", grid);
+      if (det) det.addEventListener("click", function () { openModal(BOOKS[0]); });
+    } else {
+      grid.innerHTML = BOOKS.map(bookCardHTML).join("");
+      $all(".bookcard", grid).forEach(function (card) {
+        var open = function () { openModal(BOOKS[+card.getAttribute("data-index")]); };
+        card.addEventListener("click", open);
+        card.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
+        });
       });
-    });
+    }
+    $all("[data-tilt]", grid).forEach(attachTilt);
   })();
 
   /* ---------- Book detail modal ---------- */
@@ -137,7 +184,14 @@
         if (entry.isIntersecting) { entry.target.classList.add("is-visible"); io.unobserve(entry.target); }
       });
     }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
-    items.forEach(function (el) { io.observe(el); });
+    items.forEach(function (el) {
+      // Stagger siblings so groups animate in sequence, not all at once.
+      var sibs = Array.prototype.filter.call(el.parentNode.children, function (c) {
+        return c.classList && c.classList.contains("reveal");
+      });
+      el.style.transitionDelay = (Math.min(sibs.indexOf(el), 6) * 70) + "ms";
+      io.observe(el);
+    });
   })();
 
   /* ---------- Nav: sticky + mobile menu ---------- */
@@ -207,6 +261,67 @@
         wrap.innerHTML = '<a href="mailto:' + esc(SITE.contactEmail || "") + '">Get in touch</a>';
       }
     }
+  })();
+
+  /* ---------- Scroll progress bar ---------- */
+  (function progress() {
+    var bar = $("#progress");
+    if (!bar) return;
+    var update = function () {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      var p = max > 0 ? h.scrollTop / max : 0;
+      bar.style.width = (Math.max(0, Math.min(1, p)) * 100).toFixed(2) + "%";
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+  })();
+
+  /* ---------- Hero: pointer-reactive 3D book + parallax backdrop ---------- */
+  (function heroFX() {
+    var hero = $("#top");
+    if (!hero || prefersReduced || !canHover) return;
+    var inner = $("#hero-book .book3d__inner");
+    var glow = $("#hero-glow");
+    var grid = $("#hero-grid");
+    if (!inner) return;
+
+    var target = { rx: 4, ry: -24, gx: 0, gy: 0 };
+    var cur = { rx: 4, ry: -24, gx: 0, gy: 0 };
+    var raf = null, active = false;
+
+    function loop() {
+      cur.rx += (target.rx - cur.rx) * 0.08;
+      cur.ry += (target.ry - cur.ry) * 0.08;
+      cur.gx += (target.gx - cur.gx) * 0.08;
+      cur.gy += (target.gy - cur.gy) * 0.08;
+      inner.style.transform = "rotateY(" + cur.ry.toFixed(2) + "deg) rotateX(" + cur.rx.toFixed(2) + "deg)";
+      if (glow) glow.style.transform = "translate(" + cur.gx.toFixed(1) + "px," + cur.gy.toFixed(1) + "px)";
+      if (grid) grid.style.transform = "perspective(440px) rotateX(62deg) translateX(" + (cur.gx * 0.4).toFixed(1) + "px)";
+      var settled = Math.abs(target.rx - cur.rx) < 0.01 && Math.abs(target.ry - cur.ry) < 0.01 &&
+                    Math.abs(target.gx - cur.gx) < 0.1 && Math.abs(target.gy - cur.gy) < 0.1;
+      raf = (settled && !active) ? null : requestAnimationFrame(loop);
+    }
+    function kick() { if (!raf) raf = requestAnimationFrame(loop); }
+
+    // Take over the book transform once the entrance animation has finished.
+    setTimeout(function () { inner.style.animation = "none"; }, 1750);
+
+    hero.addEventListener("pointermove", function (e) {
+      var r = hero.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width - 0.5;
+      var py = (e.clientY - r.top) / r.height - 0.5;
+      target.ry = -24 + px * 16;
+      target.rx = 4 - py * 12;
+      target.gx = -px * 26;
+      target.gy = -py * 26;
+      active = true; kick();
+    });
+    hero.addEventListener("pointerleave", function () {
+      target.rx = 4; target.ry = -24; target.gx = 0; target.gy = 0;
+      active = false; kick();
+    });
   })();
 
 })();

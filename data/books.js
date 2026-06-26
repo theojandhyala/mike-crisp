@@ -55,21 +55,6 @@ window.BOOKS = [
       { label: "Buy on Amazon", url: "https://www.amazon.co.uk/s?k=What+Can%27t+Be+Unseen+Michael+Crisp" },
       { label: "Foreshore Publishing", url: "https://foreshorepublishing.com/" }
     ]
-  },
-
-  {
-    title: "The Shadow Helix",
-    series: "Michael Crisp",
-    status: "coming-soon",
-    featured: false,
-    releaseText: "In progress — coming soon",
-    cover: "assets/covers/the-shadow-helix.svg",
-    tagline: "The next novel from Michael Crisp.",
-    blurb:
-      "Michael's next novel is already taking shape. More details — and a cover — will be " +
-      "revealed here soon. Join the mailing list below to be the first to hear.",
-    quote: "",
-    buyLinks: []
   }
 
   // ── To add another book, copy a block above and paste it here ──

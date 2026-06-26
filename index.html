@@ -19,7 +19,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="css/styles.css" />
 
@@ -46,6 +46,12 @@
 
   <a class="skip-link" href="#main">Skip to content</a>
 
+  <!-- Scroll progress bar -->
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <!-- Cinematic film grain overlay -->
+  <div class="grain" aria-hidden="true"></div>
+
   <!-- ===================== NAV ===================== -->
   <header class="nav" id="nav">
     <div class="wrap nav__inner">
@@ -69,7 +75,12 @@
 
     <!-- ===================== HERO ===================== -->
     <section class="hero" id="top">
-      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="hero__glow" id="hero-glow" aria-hidden="true"></div>
+      <div class="hero__grid" id="hero-grid" aria-hidden="true"></div>
+      <svg class="hero__ecg" viewBox="0 0 1200 200" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 100 L380 100 L405 100 L420 55 L440 150 L460 100 L505 100 L520 70 L540 130 L560 100 L1200 100"
+              fill="none" stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke" />
+      </svg>
       <div class="wrap hero__inner">
         <div class="hero__text reveal">
           <p class="eyebrow" id="hero-eyebrow">A James Harland Thriller — Book 1</p>
@@ -132,8 +143,8 @@
     <section class="books" id="books">
       <div class="wrap">
         <p class="section-eyebrow reveal">The Books</p>
-        <h2 class="section-title reveal">Out now &amp; on the way</h2>
-        <p class="section-lead reveal">The James Harland series, plus what's coming next.</p>
+        <h2 class="section-title reveal">Start the series.</h2>
+        <p class="section-lead reveal">Michael's debut thriller — the first James Harland novel, with more to come.</p>
 
         <div class="books__grid" id="books-grid">
           <!-- Book cards are generated from data/books.js -->
@@ -189,8 +200,7 @@
           <p>
             His writing blends authenticity with pace, tackling topical issues through compelling
             characters. When he isn't working in the NHS, he is busy writing the second James Harland
-            novel — with several familiar faces returning — and a further novel,
-            <em>The Shadow Helix</em>.
+            novel — with several familiar faces returning.
           </p>
           <p class="about__note">
             <!-- Mike: replace this line and the bio above with your own words any time. -->
