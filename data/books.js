@@ -38,8 +38,8 @@ window.BOOKS = [
     status: "out-now",
     featured: true,
     releaseText: "Out now — published 15 June 2026",
-    cover: "assets/covers/what-cant-be-unseen.svg",
-    tagline: "A debut medical thriller from an NHS doctor who has lived the world he writes about.",
+    cover: "assets/covers/what-cant-be-unseen.jpg",
+    tagline: "What if the cure was more dangerous than the disease?",
     blurb:
       "Dr James Harland is a brilliant NHS physician, until the night he fails to save a " +
       "young migrant woman in a London emergency department. When toxicology results reveal " +

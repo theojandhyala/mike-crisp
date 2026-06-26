@@ -50,9 +50,9 @@ ADD-A-BOOK.md           Step-by-step: how to add a book
 See **[ADD-A-BOOK.md](ADD-A-BOOK.md)**.
 
 ### Change the author photo
-Drop a photo (e.g. `michael.jpg`) into the `assets/` folder, then in
-`index.html` find `assets/author-placeholder.svg` and change it to
-`assets/michael.jpg`.
+The current photo is `assets/michael-crisp.jpg`. To swap it, drop a new photo
+into the `assets/` folder and, in `index.html`, change `assets/michael-crisp.jpg`
+to your new file name.
 
 ### Change the About / bio text
 In `index.html`, find the `<!-- ABOUT -->` section and edit the paragraphs.
@@ -99,9 +99,11 @@ whichever host you choose and update the DNS as they instruct.
 
 ## Notes
 
-- The cover for _What Can't Be Unseen_ and the author photo are tasteful
-  **placeholders** designed to look intentional until the real artwork is added.
-  Replace them by dropping real images into `assets/covers/` and `assets/`.
+- The site uses the **real book cover** (`assets/covers/what-cant-be-unseen.jpg`)
+  and a **real author photo** (`assets/michael-crisp.jpg`). The whole colour
+  scheme (toxic green + red danger accent) is drawn from the cover, so the brand
+  stays consistent. _The Shadow Helix_ still uses a placeholder cover until its
+  artwork exists — drop the real one into `assets/covers/` and update the path.
 - The Amazon link in `data/books.js` currently points to an Amazon search for
   the title — swap it for the exact product page when you have the link.
 - Book details were compiled from public information about the launch; please
