@@ -86,9 +86,12 @@ see everything.
 
 This is a static site, so any of these work — no server needed:
 
-- **GitHub Pages:** push this repo to GitHub, then in the repo go to
-  **Settings → Pages**, choose the branch, and save. Your site goes live at a
-  `github.io` address. You can then point `michaelcrispbooks.uk` at it.
+- **GitHub Pages (one-time, ~2 min):** on GitHub go to
+  **Settings → Pages → Build and deployment**. Set **Source** to
+  *Deploy from a branch*, choose branch **`claude/amazing-allen-0bkz2s`**
+  and folder **`/ (root)`**, then **Save**. After a minute the site is live at
+  **https://theojandhyala.github.io/mike-crisp/**. (Every push to that branch
+  re-publishes automatically.) You can then point `michaelcrispbooks.uk` at it.
 - **Cloudflare Pages** or **Netlify:** create a project, connect this repo,
   and leave the build command empty / output directory as the project root.
 
