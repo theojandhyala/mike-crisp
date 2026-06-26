@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Michael Crisp — Author of "What Can't Be Unseen"</title>
+  <meta name="description" content="Michael Crisp is an NHS doctor and author. His debut medical thriller, What Can't Be Unseen, introduces Dr James Harland. Out now." />
+  <meta name="author" content="Michael Crisp" />
+
+  <!-- Social sharing -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Michael Crisp — Author of What Can't Be Unseen" />
+  <meta property="og:description" content="A debut medical thriller from an NHS doctor. Meet Dr James Harland." />
+  <meta property="og:image" content="assets/covers/what-cant-be-unseen.svg" />
+  <meta name="theme-color" content="#0a0f1f" />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- If JavaScript is off, never hide content behind animations. -->
+  <noscript>
+    <style>
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .intro { display: none !important; }
+    </style>
+  </noscript>
+</head>
+<body>
+
+  <!-- Animated book "entrance" overlay (plays once on load) -->
+  <div class="intro" id="intro" aria-hidden="true">
+    <div class="intro__book">
+      <span class="intro__leaf"></span>
+      <span class="intro__leaf"></span>
+      <span class="intro__leaf"></span>
+      <span class="intro__leaf"></span>
+    </div>
+    <p class="intro__word">Michael Crisp</p>
+  </div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ===================== NAV ===================== -->
+  <header class="nav" id="nav">
+    <div class="wrap nav__inner">
+      <a class="nav__brand" href="#top">Michael&nbsp;Crisp</a>
+
+      <nav class="nav__links" id="nav-links" aria-label="Primary">
+        <a href="#story">The&nbsp;Story</a>
+        <a href="#books">Books</a>
+        <a href="#about">About</a>
+        <a href="#newsletter">Newsletter</a>
+        <a class="btn btn--small" id="nav-buy" href="#books">Buy the book</a>
+      </nav>
+
+      <button class="nav__toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" id="top">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="wrap hero__inner">
+        <div class="hero__text reveal">
+          <p class="eyebrow" id="hero-eyebrow">A James Harland Thriller — Book 1</p>
+          <h1 class="hero__title" id="hero-title">What Can't Be Unseen</h1>
+          <p class="hero__tagline" id="hero-tagline">A debut medical thriller from an NHS doctor who has lived the world he writes about.</p>
+          <div class="hero__cta">
+            <a class="btn btn--primary" id="hero-buy" href="#books">Get the book</a>
+            <a class="btn btn--ghost" href="#story">Read the story</a>
+          </div>
+          <p class="hero__meta" id="hero-meta">Out now — published 15 June 2026</p>
+        </div>
+
+        <div class="hero__bookwrap reveal" aria-hidden="false">
+          <div class="book3d" id="hero-book">
+            <div class="book3d__inner">
+              <div class="book3d__face book3d__cover">
+                <img id="hero-cover" src="assets/covers/what-cant-be-unseen.svg" alt="Cover of What Can't Be Unseen by Michael Crisp" />
+              </div>
+              <div class="book3d__face book3d__pages"></div>
+              <div class="book3d__face book3d__spine"></div>
+            </div>
+            <div class="book3d__shadow" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+      <a class="scroll-hint" href="#story" aria-label="Scroll down">
+        <span></span>
+      </a>
+    </section>
+
+    <!-- ===================== THE STORY ===================== -->
+    <section class="story" id="story">
+      <div class="wrap">
+        <p class="section-eyebrow reveal">The Story</p>
+        <h2 class="section-title reveal">It started with one unsettling question.</h2>
+
+        <blockquote class="bigquote reveal">
+          “What if someone discovered a painkiller that worked perfectly — no addiction, no
+          side&nbsp;effects? And what would they do to the people in the way of making it?”
+        </blockquote>
+
+        <div class="story__grid">
+          <p class="reveal">
+            <strong>What Can't Be Unseen</strong> opens on the worst night of Dr James Harland's career.
+            A brilliant NHS physician, he fails to save a young migrant woman in a London emergency
+            department — and when toxicology reveals an unknown pharmaceutical compound in her blood,
+            the questions won't let him go.
+          </p>
+          <p class="reveal">
+            What follows pulls Harland into a world of organised crime, illegal drug testing and
+            political conspiracy. It's a thriller with its foot on the accelerator — but underneath the
+            pace are deeply human stories, drawn from nearly twenty years on the wards, about the
+            people medicine sees and the people it overlooks.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== BOOKS ===================== -->
+    <section class="books" id="books">
+      <div class="wrap">
+        <p class="section-eyebrow reveal">The Books</p>
+        <h2 class="section-title reveal">Out now &amp; on the way</h2>
+        <p class="section-lead reveal">The James Harland series, plus what's coming next.</p>
+
+        <div class="books__grid" id="books-grid">
+          <!-- Book cards are generated from data/books.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== WHY READ ===================== -->
+    <section class="why" id="why">
+      <div class="wrap">
+        <p class="section-eyebrow reveal">Why readers are drawn in</p>
+        <h2 class="section-title reveal">Authenticity, with the pace of a thriller.</h2>
+        <div class="why__grid">
+          <article class="why__card reveal">
+            <span class="why__num">01</span>
+            <h3>Real clinical insight</h3>
+            <p>Written by a working NHS doctor — the medicine, the pressure and the corridors all ring true.</p>
+          </article>
+          <article class="why__card reveal">
+            <span class="why__num">02</span>
+            <h3>Deeply human stories</h3>
+            <p>Rich, observed characters gathered over decades on the wards — not all miserable, often surprising.</p>
+          </article>
+          <article class="why__card reveal">
+            <span class="why__num">03</span>
+            <h3>Topical and urgent</h3>
+            <p>Big, current questions — drugs, money and power — tackled through people you actually care about.</p>
+          </article>
+          <article class="why__card reveal">
+            <span class="why__num">04</span>
+            <h3>Built to keep you up</h3>
+            <p>Authenticity married to momentum: short chapters, real stakes and a mystery that won't let go.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section class="about" id="about">
+      <div class="wrap about__inner">
+        <div class="about__photo reveal">
+          <img src="assets/author-placeholder.svg" alt="Photograph of Michael Crisp" id="author-photo" />
+        </div>
+        <div class="about__text reveal">
+          <p class="section-eyebrow">About Michael</p>
+          <h2 class="section-title">The doctor who turned the ward into a thriller.</h2>
+          <p>
+            Michael Crisp is an NHS doctor with nearly twenty years' experience. With
+            <em>What Can't Be Unseen</em>, his debut, he has turned decades of life in medicine into a
+            novel — drawing on real clinical insight, rich character observation and the deeply human
+            stories you only gather at a bedside.
+          </p>
+          <p>
+            His writing blends authenticity with pace, tackling topical issues through compelling
+            characters. When he isn't working in the NHS, he is busy writing the second James Harland
+            novel — with several familiar faces returning — and a further novel,
+            <em>The Shadow Helix</em>.
+          </p>
+          <p class="about__note">
+            <!-- Mike: replace this line and the bio above with your own words any time. -->
+            Published by Foreshore Publishing.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== NEWSLETTER ===================== -->
+    <section class="newsletter" id="newsletter">
+      <div class="wrap newsletter__inner reveal">
+        <h2 class="section-title">Be first to know.</h2>
+        <p>New books, cover reveals and release dates — straight to your inbox. No spam, just news.</p>
+        <form class="newsletter__form" id="newsletter-form" novalidate>
+          <label class="sr-only" for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email" />
+          <button type="submit" class="btn btn--primary">Sign me up</button>
+        </form>
+        <p class="newsletter__status" id="newsletter-status" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <div>
+        <p class="footer__brand">Michael Crisp</p>
+        <p class="footer__tag">Medical thrillers, written from the inside.</p>
+      </div>
+      <nav class="footer__social" id="footer-social" aria-label="Social links">
+        <!-- Social links injected from data/books.js (SITE.social) -->
+      </nav>
+      <p class="footer__copy">
+        &copy; <span id="year">2026</span> Michael Crisp. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <!-- ===================== BOOK DETAIL MODAL ===================== -->
+  <div class="modal" id="book-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal__overlay" data-close></div>
+    <div class="modal__panel" role="document">
+      <button class="modal__close" data-close aria-label="Close">&times;</button>
+      <div class="modal__body" id="modal-body"><!-- filled by JS --></div>
+    </div>
+  </div>
+
+  <script src="data/books.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 630" width="420" height="630" role="img" aria-label="Book cover: The Shadow Helix by Michael Crisp (coming soon)">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#101a1a"/>
+      <stop offset="0.55" stop-color="#0a1213"/>
+      <stop offset="1" stop-color="#05080a"/>
+    </linearGradient>
+    <radialGradient id="glow2" cx="50%" cy="44%" r="55%">
+      <stop offset="0" stop-color="#5bc0be" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#5bc0be" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="420" height="630" fill="url(#bg2)"/>
+  <rect width="420" height="630" fill="url(#glow2)"/>
+  <rect x="18" y="18" width="384" height="594" fill="none" stroke="#9aa3b2" stroke-opacity="0.16" stroke-width="1"/>
+
+  <text x="210" y="74" text-anchor="middle" fill="#9aa3b2" font-family="Georgia,'Times New Roman',serif" font-size="12.5" letter-spacing="4.5">COMING SOON</text>
+
+  <!-- DNA helix motif -->
+  <g transform="translate(210 250)" stroke="#5bc0be" stroke-width="2.4" fill="none" stroke-linecap="round">
+    <path d="M -46 -90 C 46 -54, 46 -54, -46 -18 C -46 18, -46 18, 46 54 C 46 90, 46 90, -46 126" stroke-opacity="0.85"/>
+    <path d="M 46 -90 C -46 -54, -46 -54, 46 -18 C 46 18, 46 18, -46 54 C -46 90, -46 90, 46 126" stroke-opacity="0.55"/>
+    <g stroke="#e7a24d" stroke-opacity="0.8">
+      <line x1="-30" y1="-78" x2="30" y2="-78"/>
+      <line x1="-12" y1="-48" x2="12" y2="-48"/>
+      <line x1="-30" y1="-18" x2="30" y2="-18"/>
+      <line x1="-12" y1="12" x2="12" y2="12"/>
+      <line x1="-30" y1="54" x2="30" y2="54"/>
+      <line x1="-12" y1="90" x2="12" y2="90"/>
+    </g>
+  </g>
+
+  <g font-family="Georgia,'Times New Roman',serif" fill="#f4f1ea" text-anchor="middle">
+    <text x="210" y="448" font-size="50" font-weight="700" letter-spacing="1">THE SHADOW</text>
+    <text x="210" y="504" font-size="50" font-weight="700" letter-spacing="1">HELIX</text>
+  </g>
+
+  <line x1="160" y1="540" x2="260" y2="540" stroke="#5bc0be" stroke-width="2"/>
+  <text x="210" y="576" text-anchor="middle" fill="#cfd5e1" font-family="Georgia,'Times New Roman',serif" font-size="19" letter-spacing="5">MICHAEL CRISP</text>
+</svg>

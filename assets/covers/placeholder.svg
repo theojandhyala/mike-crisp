@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 630" width="420" height="630" role="img" aria-label="Placeholder book cover">
+  <defs>
+    <linearGradient id="pbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#141a2e"/>
+      <stop offset="1" stop-color="#080b15"/>
+    </linearGradient>
+  </defs>
+  <rect width="420" height="630" fill="url(#pbg)"/>
+  <rect x="18" y="18" width="384" height="594" fill="none" stroke="#9aa3b2" stroke-opacity="0.16" stroke-width="1"/>
+  <g transform="translate(210 300)" fill="none" stroke="#f0b86c" stroke-opacity="0.7" stroke-width="2.6" stroke-linejoin="round">
+    <path d="M -60 -40 C -30 -56 30 -56 0 -40 C -30 -56 30 -56 60 -40 L 60 40 C 30 24 -30 24 0 40 C 30 24 -30 24 -60 40 Z"/>
+  </g>
+  <text x="210" y="420" text-anchor="middle" fill="#cfd5e1" font-family="Georgia,'Times New Roman',serif" font-size="22" letter-spacing="3">COVER</text>
+  <text x="210" y="452" text-anchor="middle" fill="#9aa3b2" font-family="Georgia,'Times New Roman',serif" font-size="22" letter-spacing="3">COMING SOON</text>
+</svg>
