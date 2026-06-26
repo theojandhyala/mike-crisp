@@ -61,6 +61,9 @@
   <!-- Cursor-following halo (lags behind the pointer) -->
   <div class="cursor-halo" id="cursor-halo" aria-hidden="true"></div>
 
+  <!-- The book's colours flood the page as you scroll -->
+  <div class="flood" id="flood" aria-hidden="true"></div>
+
   <!-- ===================== NAV ===================== -->
   <header class="nav" id="nav">
     <div class="wrap nav__inner">
@@ -92,8 +95,9 @@
       </svg>
       <div class="wrap hero__inner">
         <div class="hero__text reveal">
-          <p class="eyebrow" id="hero-eyebrow">A James Harland Thriller — Book 1</p>
+          <p class="eyebrow">Michael Crisp · NHS doctor &amp; novelist</p>
           <h1 class="hero__title" id="hero-title">What Can't Be Unseen</h1>
+          <p class="hero__series" id="hero-series">A James Harland thriller — the debut novel</p>
           <p class="hero__tagline" id="hero-tagline">What if the cure was more dangerous than the disease?</p>
           <div class="hero__cta">
             <a class="btn btn--primary" id="hero-buy" href="#books">Get the book</a>
@@ -142,28 +146,9 @@
           <p class="reveal">
             What follows pulls Harland into a world of organised crime, illegal drug testing and
             political conspiracy. It's a thriller with its foot on the accelerator — but underneath the
-            pace are deeply human stories, drawn from nearly twenty years on the wards, about the
-            people medicine sees and the people it overlooks.
+            pace are deeply human stories, drawn from real clinical experience, about the people
+            medicine sees and the people it overlooks.
           </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== STATS ===================== -->
-    <section class="stats" id="stats" aria-label="At a glance">
-      <span class="orb orb--teal" data-parallax="0.22" aria-hidden="true"></span>
-      <div class="wrap stats__inner">
-        <div class="stat reveal">
-          <span class="stat__num"><span data-count="20">20</span></span>
-          <span class="stat__label">Years on the wards</span>
-        </div>
-        <div class="stat reveal">
-          <span class="stat__num"><span data-count="1">1</span></span>
-          <span class="stat__label">Debut thriller</span>
-        </div>
-        <div class="stat reveal">
-          <span class="stat__num stat__num--text">15·06·26</span>
-          <span class="stat__label">Published</span>
         </div>
       </div>
     </section>
@@ -171,42 +156,11 @@
     <!-- ===================== BOOKS ===================== -->
     <section class="books" id="books">
       <div class="wrap">
-        <p class="section-eyebrow reveal">The Books</p>
-        <h2 class="section-title reveal">Start the series.</h2>
-        <p class="section-lead reveal">Michael's debut thriller — the first James Harland novel, with more to come.</p>
+        <p class="section-eyebrow reveal">Out now</p>
+        <h2 class="section-title reveal">Get the book.</h2>
 
         <div class="books__grid" id="books-grid">
           <!-- Book cards are generated from data/books.js -->
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== WHY READ ===================== -->
-    <section class="why" id="why">
-      <div class="wrap">
-        <p class="section-eyebrow reveal">Why readers are drawn in</p>
-        <h2 class="section-title reveal">Authenticity, with the pace of a thriller.</h2>
-        <div class="why__grid">
-          <article class="why__card reveal">
-            <span class="why__num">01</span>
-            <h3>Real clinical insight</h3>
-            <p>Written by a working NHS doctor — the medicine, the pressure and the corridors all ring true.</p>
-          </article>
-          <article class="why__card reveal">
-            <span class="why__num">02</span>
-            <h3>Deeply human stories</h3>
-            <p>Rich, observed characters gathered over decades on the wards — not all miserable, often surprising.</p>
-          </article>
-          <article class="why__card reveal">
-            <span class="why__num">03</span>
-            <h3>Topical and urgent</h3>
-            <p>Big, current questions — drugs, money and power — tackled through people you actually care about.</p>
-          </article>
-          <article class="why__card reveal">
-            <span class="why__num">04</span>
-            <h3>Built to keep you up</h3>
-            <p>Authenticity married to momentum: short chapters, real stakes and a mystery that won't let go.</p>
-          </article>
         </div>
       </div>
     </section>
@@ -218,21 +172,20 @@
           <img src="assets/michael-crisp.jpg" alt="Photograph of Michael Crisp" id="author-photo" />
         </div>
         <div class="about__text reveal">
-          <p class="section-eyebrow">About Michael</p>
-          <h2 class="section-title">The doctor who turned the ward into a thriller.</h2>
+          <p class="section-eyebrow">About the author</p>
+          <h2 class="section-title">Michael Crisp.</h2>
           <p>
-            Michael Crisp is an NHS doctor with nearly twenty years' experience. With
-            <em>What Can't Be Unseen</em>, his debut, he has turned decades of life in medicine into a
-            novel — drawing on real clinical insight, rich character observation and the deeply human
-            stories you only gather at a bedside.
+            Michael Crisp is an NHS doctor with nearly twenty years' experience, who draws on real
+            clinical insight, rich character observation and deeply human stories gathered over
+            decades. His writing blends authenticity with pace, tackling topical issues through
+            compelling characters.
           </p>
           <p>
-            His writing blends authenticity with pace, tackling topical issues through compelling
-            characters. When he isn't working in the NHS, he is busy writing the second James Harland
-            novel — with several familiar faces returning.
+            <em>What Can't Be Unseen</em> is his debut. He now balances medicine with writing, and is
+            hard at work on the second James Harland novel — with several familiar faces returning.
           </p>
           <p class="about__note">
-            <!-- Mike: replace this line and the bio above with your own words any time. -->
+            <!-- Mike: edit this bio to match your own words any time. -->
             Published by Foreshore Publishing.
           </p>
         </div>
@@ -261,7 +214,7 @@
     <div class="wrap footer__inner">
       <div>
         <p class="footer__brand">Michael Crisp</p>
-        <p class="footer__tag">Medical thrillers, written from the inside.</p>
+        <p class="footer__tag">Author of <em>What Can't Be Unseen</em>.</p>
       </div>
       <nav class="footer__social" id="footer-social" aria-label="Social links">
         <!-- Social links injected from data/books.js (SITE.social) -->

@@ -75,7 +75,7 @@
     var b = featuredBook();
     if (!b) return;
     var set = function (id, val) { var n = $("#" + id); if (n && val) n.textContent = val; };
-    set("hero-eyebrow", b.series);
+    set("hero-series", b.series);
     set("hero-title", b.title);
     set("hero-tagline", b.tagline);
     set("hero-meta", b.releaseText);
@@ -416,6 +416,23 @@
       entries.forEach(function (e) { if (e.isIntersecting) { run(e.target); io.unobserve(e.target); } });
     }, { threshold: 0.5 });
     nums.forEach(function (n) { n.textContent = "0"; io.observe(n); });
+  })();
+
+  /* ---------- The book's colours flood the page on scroll ---------- */
+  (function flood() {
+    var el = $("#flood");
+    if (!el) return;
+    var ticking = false;
+    function update() {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      var p = max > 0 ? window.scrollY / max : 0;
+      // ramp in over the first ~55% of the page, then hold
+      el.style.opacity = Math.min(1, p / 0.55).toFixed(3);
+      ticking = false;
+    }
+    window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    window.addEventListener("resize", update);
+    update();
   })();
 
 })();

@@ -214,6 +214,7 @@ body.intro-done .intro { display: none; }
 .hero__title { font-size: clamp(2.6rem, 6.5vw, 5rem); letter-spacing: -.02em; margin: .4rem 0 0; text-shadow: 0 0 50px rgba(132,194,58,.18); }
 .hero__tagline { font-size: clamp(1.05rem, 2vw, 1.3rem); color: var(--muted); max-width: 40ch; margin: 1.4rem 0 0; }
 .hero__cta { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
+.hero__series { font-family: var(--mono); font-size: .82rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin: .7rem 0 0; }
 .hero__meta { margin-top: 1.6rem; font-family: var(--mono); font-size: .82rem; color: var(--sand); letter-spacing: .04em; }
 
 /* 3D book */
@@ -275,7 +276,7 @@ body.intro-done .intro { display: none; }
 /* =================================================================
    Story
    ================================================================= */
-.story { background: linear-gradient(180deg, var(--ink), var(--ink-2)); }
+.story { background: transparent; }
 .bigquote {
   font-family: var(--serif); font-size: clamp(1.5rem, 3.6vw, 2.6rem); line-height: 1.3;
   font-style: italic; color: var(--text); margin: 2.4rem 0; max-width: 22ch;
@@ -288,9 +289,9 @@ body.intro-done .intro { display: none; }
 /* =================================================================
    Books — light section so covers pop
    ================================================================= */
-.books { background: var(--cream); color: var(--text-dark); }
-.books .section-eyebrow { color: var(--accent-deep); }
-.books .section-lead { color: var(--muted-dark); }
+.books { background: transparent; color: var(--text); }
+.books .section-eyebrow { color: var(--accent); }
+.books .section-lead { color: var(--muted); }
 .books__grid {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
   justify-content: center; gap: clamp(1.5rem, 3vw, 2.5rem); margin-top: 3rem;
@@ -340,18 +341,18 @@ body.intro-done .intro { display: none; }
 /* =================================================================
    About — light
    ================================================================= */
-.about { background: var(--cream); color: var(--text-dark); }
+.about { background: transparent; color: var(--text); }
 .about__inner { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
 .about__photo img { width: 100%; border-radius: var(--radius); box-shadow: 0 30px 60px -28px rgba(28,35,51,.5); }
-.about__text .section-eyebrow { color: var(--accent-deep); }
-.about__text p { color: #36433a; margin: 1.2rem 0 0; }
-.about__text em { font-style: italic; color: var(--text-dark); }
-.about__note { font-size: .9rem; color: var(--muted-dark) !important; }
+.about__text .section-eyebrow { color: var(--accent); }
+.about__text p { color: #cdd6cd; margin: 1.2rem 0 0; }
+.about__text em { font-style: italic; color: var(--text); }
+.about__note { font-size: .9rem; color: var(--muted) !important; }
 
 /* =================================================================
    Newsletter — warm band
    ================================================================= */
-.newsletter { background: linear-gradient(135deg, #0c150d, #16241a); }
+.newsletter { background: transparent; }
 .newsletter::before {
   content: ""; position: absolute; inset: 0;
   background: radial-gradient(60% 80% at 80% 0%, rgba(132,194,58,.16), transparent 60%);
@@ -371,7 +372,7 @@ body.intro-done .intro { display: none; }
 /* =================================================================
    Footer
    ================================================================= */
-.footer { background: var(--ink); border-top: 1px solid var(--line); padding: 3rem 0; }
+.footer { background: transparent; border-top: 1px solid var(--line); padding: 3rem 0; position: relative; }
 .footer__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; }
 .footer__brand { font-family: var(--display); font-weight: 700; font-size: 1.3rem; margin: 0; }
 .footer__tag { color: var(--muted); font-size: .9rem; margin: .3rem 0 0; }
@@ -444,6 +445,15 @@ body.intro-done .intro { display: none; }
    Futuristic / 3D layer
    ================================================================= */
 
+/* The book's colours flood the page as you scroll (opacity driven by JS) */
+.flood {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0;
+  background:
+    radial-gradient(125% 90% at 50% 118%, #2f9b3e 0%, #115223 38%, transparent 72%),
+    linear-gradient(180deg, rgba(8,20,12,0) 0%, #0c3318 68%, #061f0f 100%);
+  transition: opacity .12s linear;
+}
+
 /* Scroll progress bar */
 .progress {
   position: fixed; top: 0; left: 0; height: 3px; width: 0;
@@ -510,13 +520,11 @@ body.intro-done .intro { display: none; }
   transform-style: preserve-3d; will-change: transform; transition: box-shadow .35s var(--ease);
 }
 .bookfeature__cover img { width: 100%; display: block; }
-.bookfeature__series { font-family: var(--mono); font-weight: 700; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-deep); }
-.bookfeature__title { font-size: clamp(1.8rem, 4vw, 2.7rem); color: var(--text-dark); margin: .5rem 0 .3rem; }
-.bookfeature__release { font-family: var(--mono); font-size: .8rem; color: var(--accent-deep); }
-.bookfeature__blurb { color: var(--muted-dark); margin: 1.1rem 0 1.6rem; }
+.bookfeature__series { font-family: var(--mono); font-weight: 700; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.bookfeature__title { font-size: clamp(1.8rem, 4vw, 2.7rem); color: var(--text); margin: .5rem 0 .3rem; }
+.bookfeature__release { font-family: var(--mono); font-size: .8rem; color: var(--accent); }
+.bookfeature__blurb { color: #cdd6cd; margin: 1.1rem 0 1.6rem; }
 .bookfeature__actions { display: flex; flex-wrap: wrap; gap: .7rem; }
-.bookfeature__actions .btn--ghost { color: var(--text-dark); border-color: var(--line-dark); }
-.bookfeature__actions .btn--ghost:hover { color: var(--accent-deep); border-color: var(--accent-deep); }
 @media (max-width: 720px) {
   .bookfeature { grid-template-columns: 1fr; text-align: center; }
   .bookfeature__cover { max-width: 230px; margin: 0 auto; }
